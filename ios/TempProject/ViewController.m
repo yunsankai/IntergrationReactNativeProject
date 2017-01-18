@@ -54,3 +54,31 @@
 }
 
 @end
+
+
+
+// CalendarManager.m
+@implementation CalendarManager
+
+RCT_EXPORT_MODULE();
+
+RCT_EXPORT_METHOD(addEvent:(NSString *)name location:(NSString *)location)
+{
+    RCTLogInfo(@"Pretending to create an event %@ at %@", name, location);
+//    [self.delegate popToRootViewController];
+    //需手动回到主线程操作。
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UINavigationController *navigation = (UINavigationController *)[[UIApplication sharedApplication].delegate window].rootViewController;
+        [navigation popToRootViewControllerAnimated:YES];
+    });
+    
+}
+
+@end
+
+
+
+
+
+
+
